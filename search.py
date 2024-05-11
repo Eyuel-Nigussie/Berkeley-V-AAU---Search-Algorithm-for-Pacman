@@ -101,8 +101,7 @@ def depthFirstSearch(problem: SearchProblem):
             for successor, action, _ in successors:
                 fringe.push((successor, actions + [action]))
     
-    # If the loop terminates without finding a solution, return an empty list
-    return []
+        return []
     # util.raiseNotDefined()
 
 def breadthFirstSearch(problem: SearchProblem):
