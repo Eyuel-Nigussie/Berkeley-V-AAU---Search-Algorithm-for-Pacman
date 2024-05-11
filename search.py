@@ -87,28 +87,17 @@ def depthFirstSearch(problem: SearchProblem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    # Initialize an empty stack to keep track of the fringe (nodes to explore)
     fringe = util.Stack()
-    # Initialize an empty set to keep track of visited states
     visited = set()
-    # Push the start state onto the fringe
     fringe.push((problem.getStartState(), []))
     
-    # Start a loop that continues until the fringe is empty
     while not fringe.isEmpty():
-        # Pop a node from the fringe
         state, actions = fringe.pop()
-        # Check if the node's state is the goal state
         if problem.isGoalState(state):
-            # If it is, reconstruct the path and return it
             return actions
-        # If the state is not the goal state and it has not been visited
         if state not in visited:
-            # Mark the state as visited
             visited.add(state)
-            # Expand the node by getting its successors
             successors = problem.getSuccessors(state)
-            # Push the unvisited successors onto the fringe
             for successor, action, _ in successors:
                 fringe.push((successor, actions + [action]))
     
@@ -119,7 +108,24 @@ def depthFirstSearch(problem: SearchProblem):
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+  
+    fringe = util.Queue()
+    visited = set()
+    fringe.push((problem.getStartState(), []))
+    
+    while not fringe.isEmpty():
+        state, actions = fringe.pop()
+        if problem.isGoalState(state):
+            return actions
+        if state not in visited:
+            visited.add(state)
+            successors = problem.getSuccessors(state)
+            for successor, action, _ in successors:
+                fringe.push((successor, actions + [action]))
+    
+    return []
+
+    # util.raiseNotDefined()
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
